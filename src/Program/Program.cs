@@ -2,6 +2,7 @@
 using CompAndDel.Pipes;
 using CompAndDel.Filters;
 
+
 namespace CompAndDel
 {
     class Program
@@ -9,26 +10,20 @@ namespace CompAndDel
         static void Main(string[] args)
         {
             PictureProvider p = new PictureProvider();
-            IPicture pic = p.GetPicture("C:\\Users\\Todes\\Desktop\\Cursera\\Fondo.jpg");
+            IPicture pic = p.GetPicture("..\\..\\ImagenPruebas.jpg");
             IFilter filter = new FilterGreyscale();
             IFilter filterDos = new FilterNegative();
             IPipe isnull = new PipeNull ();
+
             IPipe serialDos= new PipeSerial(filterDos,isnull);
             IPipe serial = new PipeSerial(filter, serialDos);
-
+            
             IPicture pic2 = serial.Send(pic);
-            
             IPicture pic3 = serialDos.Send(pic2);
-            PictureProvider t = new PictureProvider();
-            t.SavePicture(pic3,"C:\\Users\\Todes\\Desktop\\Cursera\\FondoRes6.jpg");
-
-
             
-
-
-
-
-
+            PictureProvider t = new PictureProvider();
+            t.SavePicture(pic2,"..\\..\\ImagenPruebas1.jpg");
+            t.SavePicture(pic3,"..\\..\\ImagenPruebas2.jpg");
         }
     }
 }

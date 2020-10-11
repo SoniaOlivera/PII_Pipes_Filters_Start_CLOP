@@ -9,13 +9,18 @@ namespace CompAndDel
         static void Main(string[] args)
         {
             PictureProvider p = new PictureProvider();
-            IPicture pic = p.GetPicture("C:\\Users\\FIT\\Pictures\\Screenshots\\Test.png");
+            IPicture pic = p.GetPicture("C:\\Users\\Todes\\Desktop\\Cursera\\Fondo.jpg");
             IFilter filter = new FilterGreyscale();
+            IFilter filterDos = new FilterNegative();
             IPipe isnull = new PipeNull ();
-            IPipe serial = new PipeSerial(filter,isnull);
-            serial.Send(pic);
+            IPipe serialDos= new PipeSerial(filterDos,isnull);
+            IPipe serial = new PipeSerial(filter, serialDos);
+
+            IPicture pic2 = serial.Send(pic);
+            
+            IPicture pic3 = serialDos.Send(pic2);
             PictureProvider t = new PictureProvider();
-            t.SavePicture(pic,"C:\\Users\\FIT\\Pictures\\Screenshots\\Testresult.png");
+            t.SavePicture(pic3,"C:\\Users\\Todes\\Desktop\\Cursera\\FondoRes6.jpg");
 
 
             

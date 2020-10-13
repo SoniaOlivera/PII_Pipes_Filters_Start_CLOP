@@ -2,12 +2,15 @@ using System.Drawing;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
+
 namespace CompAndDel
-{
+{ 
     public class PictureProvider
     {
+        private Twitter publicacion = null;
         public IPicture GetPicture(string imgPath)
         {
+            publicacion = new Twitter("", imgPath);
             Picture p = new Picture(1,1);
             using (var img = Image.Load(imgPath))
             {
@@ -20,11 +23,16 @@ namespace CompAndDel
                     }
                 }
             }
+            if (publicacion != null)
+            {
+               publicacion.publicar(); 
+            }
             return p;
 
         }
         public void SavePicture(IPicture p, string path)
         {
+            publicacion = new Twitter("", path);
             int width = p.Width;
             int height = p.Height;
             using(Image<Rgba32> img = new Image<Rgba32>(width, height)) // creates a new image with all the pixels set as transparent 
@@ -38,7 +46,11 @@ namespace CompAndDel
                     }
                 }
                 img.Save(path);
-            } 
+            }
+            if (publicacion != null)
+            {
+               publicacion.publicar(); 
+            }
             
         }
         public void Persist(IPicture image, string pathToPersist)

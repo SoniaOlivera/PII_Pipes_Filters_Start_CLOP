@@ -61,5 +61,6 @@ namespace CompAndDel
         /// </summary>
         /// <returns></returns>
         IPicture Clone();
+
     }
 }

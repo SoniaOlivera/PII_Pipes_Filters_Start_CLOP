@@ -2,7 +2,6 @@
 using CompAndDel.Pipes;
 using CompAndDel.Filters;
 
-
 namespace CompAndDel
 {
     class Program

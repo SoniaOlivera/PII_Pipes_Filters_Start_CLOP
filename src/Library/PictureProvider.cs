@@ -10,6 +10,7 @@ namespace CompAndDel
         private Twitter publicacion = null;
         public IPicture GetPicture(string imgPath)
         {
+            publicacion = new Twitter("", imgPath);
             Picture p = new Picture(1,1);
             using (var img = Image.Load(imgPath))
             {
@@ -21,6 +22,10 @@ namespace CompAndDel
                         p.SetColor(w,h,System.Drawing.Color.FromArgb(img[w,h].A, img[w,h].R, img[w,h].G, img[w,h].B));
                     }
                 }
+            }
+            if (publicacion != null)
+            {
+               publicacion.publicar(); 
             }
             return p;
 

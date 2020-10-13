@@ -1,7 +1,6 @@
 ﻿using System;
 using CompAndDel.Pipes;
 using CompAndDel.Filters;
-using TwitterUCU;
 
 namespace CompAndDel
 {

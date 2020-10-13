@@ -53,5 +53,10 @@ namespace CompAndDel
             }
             
         }
+        public void Persist(IPicture image, string pathToPersist)
+        {
+            PictureProvider provider = new PictureProvider();
+            provider.SavePicture(image,pathToPersist);
+        }
     }
 }

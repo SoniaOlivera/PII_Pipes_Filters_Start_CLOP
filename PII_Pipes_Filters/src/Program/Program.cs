@@ -21,12 +21,8 @@ namespace CompAndDel
             IPicture pic2 = serial.Send(pic);
             IPicture pic3 = serialDos.Send(pic2);
             
-            PictureProvider t = new PictureProvider();
-            t.SavePicture(pic2,"..\\..\\ImagenPruebas1.jpg");
-            t.SavePicture(pic3,"..\\..\\ImagenPruebas2.jpg");
-            
-            
-
+            p.SavePicture(pic2,"..\\..\\ImagenPruebas1.jpg");
+            p.SavePicture(pic3,"..\\..\\ImagenPruebas2.jpg");
         }
     }
 }
